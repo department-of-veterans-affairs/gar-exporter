@@ -1,0 +1,16 @@
+asn1crypto==0.24.0
+cffi==1.11.5
+cryptography==2.2.2
+google-api-python-client==1.6.6
+httplib2==0.11.3
+idna==2.6
+oauth2client==4.1.2
+prometheus-client==0.2.0
+pyasn1==0.4.2
+pyasn1-modules==0.2.1
+pycparser==2.18
+pyOpenSSL==17.5.0
+PyYAML==3.12
+rsa==3.4.2
+six==1.11.0
+uritemplate==3.0.0
