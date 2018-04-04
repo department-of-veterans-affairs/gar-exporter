@@ -12,12 +12,13 @@ LABELS = ['view_id', 'service_email']
 
 
 class GarCollector(object):
-  def __init__(account={},
+  def __init__(self,
+               account={},
                metrics=[],
                start_date='',
                scopes=[],
                discovery=(),
-               bind_port=port):
+               **kwargs):
     self.account = account
     self._metrics = metrics
     self.start_date = start_date
@@ -54,7 +55,7 @@ class GarCollector(object):
         body={
           'reportRequests': [
           {
-            'viewId': self.view_id,
+            'viewId': str(self.account['view_id']),
             'dateRanges': self.date_ranges,
             'metrics': self.metrics
           }]
@@ -90,6 +91,7 @@ class GarCollector(object):
 if __name__ == '__main__':
   with open(os.getenv('CONFIG', './default.config.yml'), 'r') as config_file:
     config = yaml.load(config_file)
+    print(config)
     start_http_server(int(config.get('bind_port', 9173)))
     REGISTRY.register(GarCollector(**config))
 
