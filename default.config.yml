@@ -15,6 +15,3 @@ scopes:
 discovery: !!python/tuple [https://analyticsreporting.googleapis.com/$discovery/rest]
 
 bind_port: 9173
-
-
-  

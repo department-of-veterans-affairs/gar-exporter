@@ -10,8 +10,8 @@ import time, httplib2, os
 METRIC_PREFIX = 'ga_reporting'
 LABELS = ['view_id', 'service_email']
 
-class GarCollector(object):
 
+class GarCollector(object):
   def __init__(account={},
                metrics=[],
                start_date='',
