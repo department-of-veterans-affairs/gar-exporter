@@ -34,8 +34,17 @@ class GarCollector(object):
       yield self._gauges[metric]
 
   def _initialize_analyticsreporting(self):
-    credentials = ServiceAccountCredentials.from_p12_keyfile(
-      self.account['email'], self.account['key_file'], scopes=self.scopes)
+    _, ext = os.path.splitext(self.account['key_file'])
+    if ext.lower() == '.p12':
+      credentials = ServiceAccountCredentials.from_p12_keyfile(
+        self.account['email'], self.account['key_file'], scopes=self.scopes
+      )
+    elif ext.lower() == '.json':
+      credentials = ServiceAccountCredentials.from_json_keyfile_name(
+        self.account['key_file'], scopes=self.scopes
+      )
+    else:
+      raise Exception
 
     http = credentials.authorize(httplib2.Http())
     analytics = build('analytics', 'v4', http=http, discoveryServiceUrl=self.discovery)

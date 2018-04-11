@@ -1,3 +1,4 @@
 /.venv/
 /new.config.yml
 AnalyticsExporter.j2
+/AnalyticsExporter.json
