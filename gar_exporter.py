@@ -60,16 +60,16 @@ class GarCollector(object):
     return [{'expression': metric} for metric in self._metrics]
 
   def _get_report(self, analytics):
-    return analytics.reports().batchGet(
-        body={
+    body = {
           'reportRequests': [
           {
             'viewId': str(self.account['view_id']),
-            'dateRanges': self.date_ranges,
             'metrics': self.metrics
           }]
         }
-    ).execute()
+    if self.start_date:
+      body['reportRequests'][0]['dateRanges'] = self.date_ranges
+    return analytics.reports().batchGet(body=body).execute()
 
   def _get_metrics(self, response):
     self._gauges = {}
